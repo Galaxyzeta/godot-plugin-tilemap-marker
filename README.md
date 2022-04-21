@@ -4,7 +4,7 @@ A Godot game engine plugin that marks current selected tilemap's cells and bound
 
 I made this because there's some invisible autotiles in my scene that is no where to be found.
 
-![Illustration](../tilemap_marker/gif/Illustration.gif)
+![Illustration](./gif/Illustration.gif)
 
 # Installation
 
