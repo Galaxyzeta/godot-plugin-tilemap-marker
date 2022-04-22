@@ -9,15 +9,15 @@ var _button_instance: Button		# Lazy instanced
 
 var _enable_drawing: bool = true
 
-signal __selection_ok
+signal _selection_ok
 
 func _enter_tree():
 	# Load button preset
 	if _button_scene == null:
 		disable_plugin()
 		return
-	_selection = get_editor_interface().get__selection()
-	_selection.connect("_selection_changed", self, "_on__selection_changed")
+	_selection = get_editor_interface().get_selection()
+	_selection.connect("selection_changed", self, "_on_selection_changed")
 
 func _exit_tree():
 	if _button_instance != null:
@@ -27,7 +27,7 @@ func _on_button_pressed():
 	_enable_drawing = not _enable_drawing
 	update_overlays()
 
-func _on__selection_changed():
+func _on_selection_changed():
 	# Returns an array of selected nodes
 	var selected = _selection.get_selected_nodes()
 	var switch = false
@@ -39,10 +39,10 @@ func _on__selection_changed():
 				break
 	if not switch:
 		_active_tilemap = null
-	emit_signal("__selection_ok")
+	emit_signal("_selection_ok")
 
 func handles(obj: Object)->bool:
-	yield(self, "__selection_ok")
+	yield(self, "_selection_ok")
 	return obj == _active_tilemap
 
 func forward_canvas_draw_over_viewport(overlay: Control) -> void:
