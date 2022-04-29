@@ -9,8 +9,6 @@ var _button_instance: Button		# Lazy instanced
 
 var _enable_drawing: bool = true
 
-signal _selection_ok
-
 func _enter_tree():
 	# Load button preset
 	if _button_scene == null:
@@ -39,11 +37,9 @@ func _on_selection_changed():
 				break
 	if not switch:
 		_active_tilemap = null
-	emit_signal("_selection_ok")
 
 func handles(obj: Object)->bool:
-	yield(self, "_selection_ok")
-	return obj == _active_tilemap
+	return obj is TileMap
 
 func forward_canvas_draw_over_viewport(overlay: Control) -> void:
 	# Handle button lazy instantiation
