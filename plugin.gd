@@ -26,6 +26,9 @@ func _on_button_pressed():
 	update_overlays()
 
 func _on_selection_changed():
+	# Try to hide the button
+	if _button_instance != null && _button_instance.get_parent() != null:
+		_button_instance.get_parent().remove_child(_button_instance)
 	# Returns an array of selected nodes
 	var selected = _selection.get_selected_nodes()
 	var switch = false
